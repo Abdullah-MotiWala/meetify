@@ -1,33 +1,26 @@
 // import { Fragment as MyFragment } from "react";
 
-import { useRef } from "react";
+import { Route, Routes } from "react-router";
+import SignUpPage from "./pages/signup";
+import DashboardPage from "./pages/dashboard";
+import SignInPage from "./pages/signin";
+import UserAddPage from "./pages/organization/user/add";
+import UserListingPage from "./pages/organization/user/listing";
 
 function App() {
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  
-  function signupClickhandler() {
-    const email = emailRef.current.value
-    const pwd = passwordRef.current.value
-    console.log(emailRef.current,email, pwd);
-  }
-
   return (
-    <>
-      <input
-        id="email"
-        ref={emailRef}
-        type="email"
-        placeholder="Enter your Email"
-      />
-      <input
-        id="password"
-        ref={passwordRef}
-        type="password"
-        placeholder="Enter your Password"
-      />
-      <button onClick={signupClickhandler}>Signup</button>
-    </>
+    <Routes>
+      <Route path="*" element={<h1>404 Page Not Found</h1>} />
+      <Route path="/" element={<DashboardPage />} />
+      <Route path="signup" element={<SignUpPage />} />
+      <Route path="signin" element={<SignInPage />} />
+      <Route path="organization">
+        <Route path="user">
+          <Route index element={<UserListingPage />} />
+          <Route path="add" element={<UserAddPage />} />
+        </Route>
+      </Route>
+    </Routes>
   );
 }
 
