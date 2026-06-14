@@ -1,13 +1,16 @@
 import { useRef } from "react";
+import supabase from "../../lib/supabase";
 
 export default function SignUpPage() {
   const emailRef = useRef();
   const passwordRef = useRef();
 
-  function signupClickhandler() {
+  async function signupClickhandler() {
     const email = emailRef.current.value;
-    const pwd = passwordRef.current.value;
-    console.log(email, pwd);
+    const password = passwordRef.current.value;
+
+    const result = await supabase.auth.signUp({ email, password });
+    console.log(result);
   }
 
   return (
