@@ -8,7 +8,6 @@ import UserAddPage from "./pages/organization/user/add";
 import UserListingPage from "./pages/organization/user/listing";
 
 function App() {
-
   return (
     <BrowserRouter>
       <Routes>
